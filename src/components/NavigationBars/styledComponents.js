@@ -39,7 +39,7 @@ export const NavText = styled.p`
   font-size: 20px;
   color: ${props => props.textColor};
 `
-export const FooterText = styled.h2`
+export const FooterText = styled.p`
   font-weight: 600;
   font-family: 'Roboto';
   color: ${props => props.textColor};

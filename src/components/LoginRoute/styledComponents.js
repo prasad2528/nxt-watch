@@ -69,7 +69,7 @@ export const CustomButton = styled.button`
   border-radius: 8px;
   background-color: #3b82f6;
   margin-top: 20px;
-  color: #fff;
+  color: #ffffff;
   cursor: pointer;
 `
 export const Paragraph = styled.p`

@@ -71,9 +71,9 @@ const NavigationBars = () => (
                 <NavText textColor={textColor}>Gaming</NavText>
               </NavigationBarsDetails>
             </NavLink>
-            <NavLink to="/savedVideos">
+            <NavLink to="/saved-videos">
               <NavigationBarsDetails
-                key="savedVideos"
+                key="SavedVideos"
                 bgColor={activeTab === 'SavedVideos' ? activeTabBg : 'none'}
                 onClick={onClickTabSavedVideos}
               >
@@ -99,7 +99,7 @@ const NavigationBars = () => (
               />
             </FooterIconsContainer>
             <Description textColor={textColor}>
-              Enjoy Now to see your channels and recommendations!
+              Enjoy! Now to see your channels and recommendations!
             </Description>
           </NavigationFooterContainer>
         </NavigationContainer>

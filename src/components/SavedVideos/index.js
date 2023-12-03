@@ -13,6 +13,7 @@ import {
   ItemLink,
   FailureContainer,
   FailureImage,
+  NoVideoTitle,
 } from './styledComponents'
 import NavigationBars from '../NavigationBars'
 import Header from '../Header'
@@ -24,7 +25,11 @@ const SavedVideos = () => {
       {value => {
         const {isDarkTheme, savedVideos} = value
         const textColor = isDarkTheme ? '#fff' : '#000'
+        const {thumbnailUrl} = savedVideos
+        console.log(savedVideos)
+        console.log(thumbnailUrl)
         if (savedVideos.length === 0) {
+          console.log(savedVideos.length)
           return (
             <FailureContainer>
               <FailureImage
@@ -32,9 +37,9 @@ const SavedVideos = () => {
                 alt="no saved videos"
               />
 
-              <VideoTitle textColor={textColor}>
+              <NoVideoTitle textColor={textColor}>
                 No saved videos found
-              </VideoTitle>
+              </NoVideoTitle>
               <VideoName textColor={textColor}>
                 You can save your videos while watching them
               </VideoName>
@@ -44,9 +49,12 @@ const SavedVideos = () => {
         return (
           <TrendingList>
             {savedVideos.map(eachVideo => (
-              <ItemLink to={`/videos/${eachVideo.id}`}>
+              <ItemLink to={`/videos/${eachVideo.id}`} key={eachVideo.id}>
                 <VideoItem key={eachVideo.id}>
-                  <VideoImage src={eachVideo.thumbnailUrl} alt={eachVideo.id} />
+                  <VideoImage
+                    src={eachVideo.thumbnailUrl}
+                    alt="video thumbnail"
+                  />
                   <VideoDetails>
                     <VideoTitle textColor={textColor}>
                       {eachVideo.title}
@@ -56,7 +64,7 @@ const SavedVideos = () => {
                     </VideoName>
                     <VideoViewsContainer>
                       <VideoName textColor={textColor}>
-                        {eachVideo.viewsCount} views
+                        {eachVideo.viewCount} views
                       </VideoName>
                       <VideoName textColor={textColor}>
                         {eachVideo.publishedAt}
@@ -76,13 +84,13 @@ const SavedVideos = () => {
     <NxtContext.Consumer>
       {value => {
         const {isDarkTheme} = value
-        const background = isDarkTheme ? '#000000' : '#ffffff'
+        const background = isDarkTheme ? '#0f0f0f' : '#ffffff'
         const textColor = isDarkTheme ? '#fff' : '#000'
         return (
           <>
             <Header />
             <NavigationBars />
-            <CardContainer background={background}>
+            <CardContainer data-testid="savedVideos" background={background}>
               <MainHeading>
                 <CgPlayListAdd size={40} color="#ff0b37" />
                 <TrendingHeading textColor={textColor}>

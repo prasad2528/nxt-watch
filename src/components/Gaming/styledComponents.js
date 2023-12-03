@@ -31,13 +31,16 @@ export const TrendingList = styled.ul`
 export const VideoItem = styled.li`
   margin: 20px 0 50px 20px;
 `
+export const NoVideoTitle = styled.h1`
+  font-weight: 400;
+`
 
 export const VideoViewsContainer = styled.div`
   display: flex;
   align-items: center;
   gap: 30px;
 `
-export const VideoTitle = styled.h2`
+export const VideoTitle = styled.p`
   font-size: 20px;
   color: ${props => props.textColor};
 `

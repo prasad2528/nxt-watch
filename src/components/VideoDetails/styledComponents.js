@@ -8,6 +8,7 @@ export const CardContainer = styled.div`
   overflow: hidden;
   margin-top: 90px;
   padding: 50px 0 50px 60px;
+
   //border: 2px solid;
 `
 
@@ -23,9 +24,11 @@ export const VideoContainer = styled.div`
 export const VideoUrl = styled.img`
   width: 100%;
 `
-export const VideoTitle = styled.h2`
+export const VideoTitle = styled.p`
   color: ${props => props.textColor};
   color: ${props => props.textColor};
+  font-weight: 500;
+  font-size: 24px;
 `
 export const ViewsContainer = styled.div`
   display: flex;
@@ -34,6 +37,10 @@ export const ViewsContainer = styled.div`
 export const FlexContainer = styled.div`
   display: flex;
   justify-content: space-between;
+  width: 95%;
+`
+export const NoVideoTitle = styled.h1`
+  font-weight: 400;
 `
 export const Paragraph = styled.p`
   margin-right: 30px;
@@ -47,8 +54,9 @@ export const LikesContainer = styled.div`
 export const LikeContainer = styled.div`
   display: flex;
   align-items: center;
-  gap: 6px;
   cursor: pointer;
+  margin-right: 20px;
+  width: 70px;
 `
 export const Line = styled.hr``
 export const ProfileContainer = styled.div`
@@ -76,4 +84,32 @@ export const MainButton = styled.button`
   border: none;
   outline: none;
   background-color: transparent;
+`
+export const RenderLoader = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`
+export const FailureContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`
+export const FailureImage = styled.img`
+  width: 80%;
+  height: 60%;
+`
+export const CustomButton = styled.button`
+  width: 120px;
+  height: 40px;
+  outline: none;
+  border: none;
+  border-radius: 8px;
+  background-color: #4f46e5;
+  color: #fff;
+`
+export const VideoName = styled.p`
+  color: ${props => props.textColor};
 `

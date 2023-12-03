@@ -31,6 +31,7 @@ import {
   NoVideosContainer,
   NoVideosImage,
   ItemLink,
+  NoVideoTitle,
 } from './styledComponents'
 import NavigationBars from '../NavigationBars'
 import NxtContext from '../../context/NxtContext'
@@ -103,16 +104,16 @@ class Home extends Component {
           return (
             <UlContainer>
               {homeVideosList.map(eachVideo => (
-                <ItemLink to={`/videos/${eachVideo.id}`}>
+                <ItemLink to={`/videos/${eachVideo.id}`} key={eachVideo.id}>
                   <ListContainer key={eachVideo.id}>
                     <VideoImage
                       src={eachVideo.thumbnailUrl}
-                      alt={eachVideo.id}
+                      alt="video thumbnail"
                     />
                     <VideoDetailsContainer>
                       <VideoLogo
                         src={eachVideo.profileImageUrl}
-                        alt={eachVideo.id}
+                        alt="channel logo"
                       />
                       <VideoDetails>
                         <VideoTitle textColor={textColor}>
@@ -141,7 +142,7 @@ class Home extends Component {
         src="https://assets.ccbp.in/frontend/react-js/nxt-watch-no-search-results-img.png"
         alt="no videos"
       />
-      <VideoTitle>No Search results found</VideoTitle>
+      <NoVideoTitle>No Search results found</NoVideoTitle>
       <VideoName>Try different key words or remove search filter</VideoName>
       <CustomButton type="button" onClick={this.onRetry} bgColor color>
         Retry
@@ -173,6 +174,10 @@ class Home extends Component {
     }
   }
 
+  onRetry = () => {
+    this.getHomeVideos()
+  }
+
   renderLoader = () => (
     <RenderLoader data-testid="loader">
       <Loader type="ThreeDots" color="#0b69ff" height={80} width={80} />
@@ -183,13 +188,13 @@ class Home extends Component {
     <FailureContainer>
       <FailureImage
         src="https://assets.ccbp.in/frontend/react-js/nxt-watch-failure-view-light-theme-img.png"
-        alt="failure"
+        alt="failure view"
       />
-      <VideoTitle>Oops! Something Went Wrong</VideoTitle>
+      <NoVideoTitle>Oops! Something Went Wrong</NoVideoTitle>
       <VideoName>
         We are having some trouble to complete your request Please try again.
       </VideoName>
-      <CustomButton bgColor color>
+      <CustomButton bgColor color onClick={this.onRetry}>
         Retry
       </CustomButton>
     </FailureContainer>
@@ -215,19 +220,22 @@ class Home extends Component {
       <NxtContext.Consumer>
         {value => {
           const {isDarkTheme} = value
-          const background = isDarkTheme ? '#000000' : '#ffffff'
+          const background = isDarkTheme ? '#181818' : '#ffffff'
           const textColor = isDarkTheme ? '#fff' : '#000'
           return (
             <>
               <Header />
               <NavigationBars />
-              <CardContainer background={background}>
+              <CardContainer data-testid="home" background={background}>
                 {bannerShow ? (
-                  <BannerBgContainer background={background}>
+                  <BannerBgContainer
+                    data-testid="banner"
+                    background={background}
+                  >
                     <BannerDetails>
                       <BannerImage
                         src="https://assets.ccbp.in/frontend/react-js/nxt-watch-logo-light-theme-img.png"
-                        alt="website logo"
+                        alt="nxt watch logo"
                       />
                       <Paragraph>
                         Buy Nxt Watch Premium prepaid plans with
@@ -235,7 +243,11 @@ class Home extends Component {
                       </Paragraph>
                       <CustomButton type="button">GET IT NOW</CustomButton>
                     </BannerDetails>
-                    <CloseButton type="button" onClick={this.onCloseBanner}>
+                    <CloseButton
+                      type="button"
+                      data-testid="close"
+                      onClick={this.onCloseBanner}
+                    >
                       <MdClose size={20} />
                     </CloseButton>
                   </BannerBgContainer>
@@ -252,6 +264,7 @@ class Home extends Component {
                       textColor={textColor}
                     />
                     <SearchButton
+                      type="button"
                       data-testid="searchButton"
                       onClick={this.onClickSearch}
                     >

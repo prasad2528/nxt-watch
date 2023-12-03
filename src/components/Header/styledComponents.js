@@ -1,3 +1,4 @@
+import {Link} from 'react-router-dom'
 import styled from 'styled-components'
 
 export const NavContainer = styled.div`
@@ -24,12 +25,22 @@ export const NavImage = styled.img`
   height: 40px;
   width: 150px;
 `
-
+export const ItemLink = styled(Link)`
+  text-decoration: none;
+`
 export const NavLists = styled.div`
   display: flex;
   align-items: center;
   gap: 20px;
 `
+export const NavbarList = styled.ul`
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  list-style-type: none;
+`
+
+export const NavItem = styled.li``
 
 export const NavButton = styled.button`
   border: none;
@@ -49,6 +60,7 @@ export const LogoutButton = styled.button`
   color: ${props => props.textColor};
   border-radius: 6px;
   cursor: pointer;
+  margin-left: 20px;
 `
 export const PopupView = styled.div`
   height: 300px;

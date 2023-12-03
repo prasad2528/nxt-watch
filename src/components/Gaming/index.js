@@ -21,6 +21,7 @@ import {
   FailureImage,
   CustomButton,
   ItemLink,
+  NoVideoTitle,
 } from './styledComponents'
 
 const apiStatusConstants = {
@@ -75,9 +76,9 @@ class Gaming extends Component {
     <FailureContainer>
       <FailureImage
         src="https://assets.ccbp.in/frontend/react-js/nxt-watch-failure-view-light-theme-img.png"
-        alt="failure"
+        alt="failure view"
       />
-      <VideoTitle>Oops! Something Went Wrong</VideoTitle>
+      <NoVideoTitle>Oops! Something Went Wrong</NoVideoTitle>
       <VideoName>
         We are having some trouble to complete your request Please try again.
       </VideoName>
@@ -102,9 +103,12 @@ class Gaming extends Component {
         return (
           <TrendingList>
             {gamingVideos.map(eachVideo => (
-              <ItemLink to={`videos/${eachVideo.id}`}>
-                <VideoItem>
-                  <VideoImage src={eachVideo.thumbnailUrl} alt={eachVideo.id} />
+              <ItemLink to={`videos/${eachVideo.id}`} key={eachVideo.id}>
+                <VideoItem key={eachVideo.id}>
+                  <VideoImage
+                    src={eachVideo.thumbnailUrl}
+                    alt="video thumbnail"
+                  />
                   <VideoDetails>
                     <VideoTitle textColor={textColor}>
                       {eachVideo.title}
@@ -143,13 +147,13 @@ class Gaming extends Component {
       <NxtContext.Consumer>
         {value => {
           const {isDarkTheme} = value
-          const background = isDarkTheme ? '#000000' : '#ffffff'
+          const background = isDarkTheme ? '#0f0f0f' : '#ffffff'
           const textColor = isDarkTheme ? '#fff' : '#000'
           return (
             <>
               <Header />
               <NavigationBars />
-              <CardContainer background={background}>
+              <CardContainer data-testid="gaming" background={background}>
                 <MainHeading>
                   <SiYoutubegaming size={30} color="#ff0b37" />
                   <TrendingHeading textColor={textColor}>

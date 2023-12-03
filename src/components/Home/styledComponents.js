@@ -112,10 +112,13 @@ export const VideoDetailsContainer = styled.div`
   font-family: 'Roboto';
 `
 export const VideoDetails = styled.div``
-export const VideoTitle = styled.h3`
+export const VideoTitle = styled.p`
   font-weight: 400;
   font-size: 17px;
   color: ${props => props.textColor};
+`
+export const NoVideoTitle = styled.h1`
+  font-weight: 400;
 `
 export const VideoViewsContainer = styled.div`
   display: flex;

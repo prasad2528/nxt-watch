@@ -15,6 +15,9 @@ import {
   CustomPara,
   ButtonsContainer,
   ConfirmButtons,
+  NavbarList,
+  NavItem,
+  ItemLink,
 } from './styledComponents'
 import NxtContext from '../../context/NxtContext'
 
@@ -37,28 +40,42 @@ const Header = props => {
           <NavContainer background={background}>
             <NavCardContainer>
               {isDarkTheme ? (
-                <NavImage
-                  src="https://assets.ccbp.in/frontend/react-js/nxt-watch-logo-dark-theme-img.png"
-                  alt="website logo"
-                />
+                <ItemLink to="/">
+                  <NavImage
+                    src="https://assets.ccbp.in/frontend/react-js/nxt-watch-logo-dark-theme-img.png"
+                    alt="website logo"
+                  />
+                </ItemLink>
               ) : (
-                <NavImage
-                  src="https://assets.ccbp.in/frontend/react-js/nxt-watch-logo-light-theme-img.png"
-                  alt="website logo"
-                />
+                <ItemLink to="/">
+                  <NavImage
+                    src="https://assets.ccbp.in/frontend/react-js/nxt-watch-logo-light-theme-img.png"
+                    alt="website logo"
+                  />
+                </ItemLink>
               )}
               <NavLists>
-                <NavButton type="button" onClick={onClickChangeTheme}>
-                  {isDarkTheme ? (
-                    <BsBrightnessHigh size={35} color="#fff" />
-                  ) : (
-                    <BsMoon size={35} />
-                  )}
-                </NavButton>
-                <Profile
-                  src="https://assets.ccbp.in/frontend/react-js/nxt-watch-profile-img.png"
-                  alt="profile"
-                />
+                <NavbarList>
+                  <NavItem>
+                    <NavButton
+                      type="button"
+                      onClick={onClickChangeTheme}
+                      data-testid="theme"
+                    >
+                      {isDarkTheme ? (
+                        <BsBrightnessHigh size={35} color="#fff" />
+                      ) : (
+                        <BsMoon size={35} />
+                      )}
+                    </NavButton>
+                  </NavItem>
+                  <NavItem>
+                    <Profile
+                      src="https://assets.ccbp.in/frontend/react-js/nxt-watch-profile-img.png"
+                      alt="profile"
+                    />
+                  </NavItem>
+                </NavbarList>
                 <Popup
                   modal
                   trigger={
@@ -73,7 +90,7 @@ const Header = props => {
                 >
                   {close => (
                     <PopupView>
-                      <CustomPara>Are you sure,you want to logout?</CustomPara>
+                      <CustomPara>Are you sure, you want to logout</CustomPara>
                       <ButtonsContainer>
                         <ConfirmButtons type="button" onClick={() => close()}>
                           Cancel

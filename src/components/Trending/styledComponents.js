@@ -40,9 +40,12 @@ export const VideoViewsContainer = styled.div`
   align-items: center;
   gap: 30px;
 `
-export const VideoTitle = styled.h2`
+export const VideoTitle = styled.p`
   font-size: 20px;
   color: ${props => props.textColor};
+`
+export const NoVideoTitle = styled.h1`
+  font-weight: 400;
 `
 export const VideoName = styled.p`
   color: ${props => props.textColor};

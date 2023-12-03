@@ -1,5 +1,5 @@
 import {Component} from 'react'
-import {Switch, Route} from 'react-router-dom'
+import {Switch, Route, Redirect} from 'react-router-dom'
 import NxtContext from './context/NxtContext'
 import './App.css'
 import LoginRoute from './components/LoginRoute'
@@ -8,6 +8,8 @@ import Trending from './components/Trending'
 import Gaming from './components/Gaming'
 import VideoDetails from './components/VideoDetails'
 import SavedVideos from './components/SavedVideos'
+import ProtectedRoute from './components/ProtectedRoute'
+import NotFound from './components/NotFound'
 
 class App extends Component {
   state = {
@@ -41,25 +43,28 @@ class App extends Component {
   }
 
   render() {
-    const {isDarkTheme, activeTab} = this.state
+    const {isDarkTheme, activeTab, savedVideos} = this.state
     return (
       <NxtContext.Provider
         value={{
           isDarkTheme,
           activeTab,
+          savedVideos,
           toggleTheme: this.toggleTheme,
           changeTab: this.changeTab,
           addVideo: this.addVideo,
-          onRemoveVideo: this.OnRemoveVideo,
+          onRemoveVideo: this.onRemoveVideo,
         }}
       >
         <Switch>
           <Route exact path="/login" component={LoginRoute} />
-          <Route exact path="/" component={Home} />
-          <Route exact path="/videos/:id" component={VideoDetails} />
-          <Route exact path="/trending" component={Trending} />
-          <Route exact path="/gaming" component={Gaming} />
-          <Route exact path="/savedVideos" component={SavedVideos} />
+          <ProtectedRoute exact path="/" component={Home} />
+          <ProtectedRoute exact path="/videos/:id" component={VideoDetails} />
+          <ProtectedRoute exact path="/trending" component={Trending} />
+          <ProtectedRoute exact path="/gaming" component={Gaming} />
+          <ProtectedRoute exact path="/saved-videos" component={SavedVideos} />
+          <Route path="/not-found" component={NotFound} />
+          <Redirect to="/not-found" />
         </Switch>
       </NxtContext.Provider>
     )

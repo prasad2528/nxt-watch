@@ -21,6 +21,7 @@ import {
   FailureImage,
   CustomButton,
   ItemLink,
+  NoVideoTitle,
 } from './styledComponents'
 import NxtContext from '../../context/NxtContext'
 
@@ -84,11 +85,11 @@ class Trending extends Component {
           <FailureContainer>
             <FailureImage
               src="https://assets.ccbp.in/frontend/react-js/nxt-watch-failure-view-light-theme-img.png"
-              alt="failure"
+              alt="failure view"
             />
-            <VideoTitle textColor={textColor}>
+            <NoVideoTitle textColor={textColor}>
               Oops! Something Went Wrong
-            </VideoTitle>
+            </NoVideoTitle>
             <VideoName textColor={textColor}>
               We are having some trouble to complete your request Please try
               again.
@@ -122,9 +123,12 @@ class Trending extends Component {
         return (
           <TrendingList>
             {trendingVideos.map(eachVideo => (
-              <ItemLink to={`/videos/${eachVideo.id}`}>
-                <VideoItem>
-                  <VideoImage src={eachVideo.thumbnailUrl} alt={eachVideo.id} />
+              <ItemLink to={`/videos/${eachVideo.id}`} key={eachVideo.id}>
+                <VideoItem key={eachVideo.id}>
+                  <VideoImage
+                    src={eachVideo.thumbnailUrl}
+                    alt="video thumbnail"
+                  />
                   <VideoDetails>
                     <VideoTitle textColor={textColor}>
                       {eachVideo.title}
@@ -169,13 +173,13 @@ class Trending extends Component {
       <NxtContext.Consumer>
         {value => {
           const {isDarkTheme} = value
-          const background = isDarkTheme ? '#000000' : '#ffffff'
+          const background = isDarkTheme ? '#0f0f0f' : '#ffffff'
           const textColor = isDarkTheme ? '#fff' : '#000'
           return (
             <>
               <Header />
               <NavigationBars />
-              <CardContainer background={background}>
+              <CardContainer data-testid="trending" background={background}>
                 <MainHeading>
                   <AiFillFire size={30} color="#ff0b37" />
                   <TrendingHeading textColor={textColor}>

@@ -14,6 +14,7 @@ export const CardContainer = styled.div`
   overflow: hidden;
   margin-top: 90px;
   padding: 30px 0 30px 60px;
+  min-height: 100vh;
   //border: 2px solid;
 `
 export const MainHeading = styled.div`
@@ -40,8 +41,12 @@ export const VideoViewsContainer = styled.div`
   align-items: center;
   gap: 30px;
 `
-export const VideoTitle = styled.h2`
-  font-size: 20px;
+export const NoVideoTitle = styled.h1`
+  font-weight: 400;
+  color: ${props => props.textColor};
+`
+export const VideoTitle = styled.p`
+  font-size: 25px;
   color: ${props => props.textColor};
 `
 export const VideoName = styled.p`
@@ -52,6 +57,7 @@ export const VideoDetails = styled.div`
 `
 export const VideoImage = styled.img`
   width: 500px;
+  height: 250px;
   margin-right: 30px;
 `
 export const FailureContainer = styled.div`
